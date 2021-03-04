@@ -17,6 +17,10 @@ STATUS_FIRST_FRAME = 0  # 第一帧的标识
 STATUS_CONTINUE_FRAME = 1  # 中间帧标识
 STATUS_LAST_FRAME = 2  # 最后一帧的标识
 
+# -------------- 错误信息 ------------------ #
+# code :888   websocket错误（网络连接错误）
+# code :999   消息内部错误
+
 class Ws_Param(object):
     # 初始化
     def __init__(self, APPID, APIKey, APISecret, Text):
@@ -67,7 +71,7 @@ class Ws_Param(object):
         return url
 
 class txt_to_voice():
-    def __init__(self, sound_file_name = 'answer.mp3'):
+    def __init__(self, sound_file_name='answer.mp3'):
         self.APPID = '6035bae5'
         self.APISecret = 'b7e2ffeb156d646bd15ee458651b0494'
         self.APIKey = 'bc8891fd866c6497eb3bacf3d6418478'
@@ -135,6 +139,8 @@ class txt_to_voice():
 
     # 主功能函数
     def convert(self, txt):
+        self.code = 0
+        self.error_message = 'None'
         self.wsParam = Ws_Param(APPID=self.APPID, APISecret=self.APISecret, APIKey=self.APIKey, Text=txt)
         websocket.enableTrace(False)
         wsUrl = self.wsParam.create_url()
@@ -148,4 +154,4 @@ class txt_to_voice():
 if __name__ == "__main__":
     txtToVoice = txt_to_voice()
     code, error_message = txtToVoice.convert("你好呀，我是小书童机器人")
-    print("code:{}, error message:{}".format(code, error_message))
+    print("code: {}, error message: {}".format(code, error_message))

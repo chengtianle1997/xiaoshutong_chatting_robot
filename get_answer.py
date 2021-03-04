@@ -4,6 +4,9 @@ import hashlib
 import base64
 import json
 
+# -------------- 错误信息 ------------------ #
+# code :999   网络超时
+
 class TuringRobot:
     def __init__(self):
         self.URL = "http://openapi.xfyun.cn/v2/aiui"
