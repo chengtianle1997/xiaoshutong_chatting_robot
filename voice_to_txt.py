@@ -113,7 +113,7 @@ class voice_to_txt():
     def on_error(self, ws, error):
         # print("### error:", error)
         self.code = 888
-        self.error_message = str(error)
+        self.error_message = str(error) 
 
     # 收到websocket关闭的处理
     def on_close(self, ws):
