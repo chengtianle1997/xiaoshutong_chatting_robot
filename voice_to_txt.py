@@ -80,7 +80,7 @@ class voice_to_txt():
         self.error_message = 'None'
     
     # 收到websocket消息的处理
-    def on_message(self, message):
+    def on_message(self, ws, message):
         try:
             code = json.loads(message)["code"]
             sid = json.loads(message)["sid"]
@@ -110,18 +110,18 @@ class voice_to_txt():
             self.error_message = str(e)
 
     # 收到websocket错误的处理
-    def on_error(self, error):
+    def on_error(self, ws, error):
         # print("### error:", error)
         self.code = 888
         self.error_message = str(error)
 
     # 收到websocket关闭的处理
-    def on_close(self):
+    def on_close(self, ws):
         # print("### closed ###")
         return
 
     # 收到websocket连接建立的处理
-    def on_open(self):
+    def on_open(self, ws):
         def run(*args):
             frameSize = 8000  # 每一帧的音频大小
             intervel = 0.04  # 发送音频间隔(单位:s)

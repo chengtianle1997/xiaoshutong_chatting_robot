@@ -82,7 +82,7 @@ class txt_to_voice():
         self.error_message = 'None'
     
     # 收到websocket消息的处理
-    def on_message(self, message):
+    def on_message(self, ws, message):
         try:
             message =json.loads(message)
             code = message["code"]
@@ -112,18 +112,18 @@ class txt_to_voice():
             # print("receive msg,but parse exception:", e)
 
     # 收到websocket错误的处理
-    def on_error(self, error):
+    def on_error(self, ws, error):
         # 网络错误
         self.code = 888
         self.error_message = str(error)
 
     # 收到websocket关闭的处理
-    def on_close(self):
-        # print("### closed ###")
+    def on_close(self, ws):
+        print("### closed ###")
         return
 
     # 收到websocket连接建立的处理
-    def on_open(self):
+    def on_open(self, ws):
         def run(*args):
             d = {"common": self.wsParam.CommonArgs,
                 "business": self.wsParam.BusinessArgs,

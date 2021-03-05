@@ -178,7 +178,7 @@ if __name__ == "__main__":
     #time1 = datetime.now()
     wsParam = Ws_Param(APPID='6035bae5', APISecret='b7e2ffeb156d646bd15ee458651b0494',
                        APIKey='bc8891fd866c6497eb3bacf3d6418478',
-                       AudioFile=r'E:/iat_mp3_16k.mp3')
+                       AudioFile='question.mp3')
     websocket.enableTrace(False)
     wsUrl = wsParam.create_url()
     ws = websocket.WebSocketApp(wsUrl, on_message=on_message, on_error=on_error, on_close=on_close)

@@ -103,7 +103,7 @@ def on_message(ws, message):
             print("sid:%s call error:%s code is:%s" % (sid, errMsg, code))
         else:
 
-            with open('./demo.mp3', 'ab') as f:
+            with open('answer.mp3', 'ab') as f:
                 f.write(audio)
 
     except Exception as e:
@@ -131,8 +131,8 @@ def on_open(ws):
         d = json.dumps(d)
         print("------>开始发送文本数据")
         ws.send(d)
-        if os.path.exists('./demo.mp3'):
-            os.remove('./demo.mp3')
+        if os.path.exists('answer.mp3'):
+            os.remove('answer.mp3')
 
     thread.start_new_thread(run, ())
 
