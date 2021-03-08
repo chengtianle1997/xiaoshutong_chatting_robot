@@ -153,5 +153,5 @@ class txt_to_voice():
 # Test Demo
 if __name__ == "__main__":
     txtToVoice = txt_to_voice()
-    code, error_message = txtToVoice.convert("你好呀，我是小书童机器人")
+    code, error_message = txtToVoice.convert("你好呀，我是小书童机器人,我们开始聊天吧")
     print("code: {}, error message: {}".format(code, error_message))
