@@ -13,11 +13,15 @@ class robot_speaker():
         mixer.init(self.bitrate)
     
     def play(self, filename):
-        mixer.music.load(filename)
-        audio = MP3(filename)
-        mixer.music.play()
-        time.sleep(audio.info.length + 1)
-        mixer.music.stop()
+        try:
+            mixer.music.load(filename)
+            audio = MP3(filename)
+            mixer.music.play()
+            time.sleep(audio.info.length + 1)
+            mixer.music.stop()
+        except Exception as e:
+            print(e)
+            return
 
 
 # audio = MP3('answer.mp3')

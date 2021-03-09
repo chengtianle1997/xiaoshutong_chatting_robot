@@ -138,7 +138,9 @@ class txt_to_voice():
         thread.start_new_thread(run, ())
 
     # 主功能函数
-    def convert(self, txt):
+    def convert(self, txt, sound_file_name=None):
+        if sound_file_name is not None:
+            self.sound_file_name = sound_file_name
         self.code = 0
         self.error_message = 'None'
         self.wsParam = Ws_Param(APPID=self.APPID, APISecret=self.APISecret, APIKey=self.APIKey, Text=txt)
