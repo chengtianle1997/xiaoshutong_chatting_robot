@@ -158,5 +158,8 @@ if __name__ == '__main__':
     # 开始聊天
     getTalk.Talk()
     # 保持程序运行（主线程关闭，子线程随之关闭）
-    time.sleep(15)
+    time.sleep(20)
+    # 测试手动停止
+    # time.sleep(2)
+    # getTalk.Stop()
     print("测试结束")
