@@ -19,8 +19,9 @@ class GetTalk:
     # 主功能函数：开始聊天
     def Talk(self):
         # 开始录音
+        self.recording = True
         self.recorder.record()
-        time.sleep(5)
+        self.recording = False
         # 语音转文字
         code, txt, error_msg = self.voice_to_txt.convert()
         # 问题转回答
@@ -32,6 +33,8 @@ class GetTalk:
     
     # 主功能函数：手动停止录音（若录音过程未结束）
     def Stop(self):
+        if self.recording:
+            self.recorder.stop()
         return
 
 
@@ -39,7 +42,6 @@ class GetTalk:
 if __name__ == '__main__':
     getTalk = GetTalk()
     import _thread
-    import time
-    _thread.start_new_thread(getTalk.Talk())
+    _thread.start_new_thread(getTalk.Talk)
     time.sleep(20)
     print("测试结束")

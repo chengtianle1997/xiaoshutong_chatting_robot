@@ -25,8 +25,8 @@ class robot_recorder():
         self.wav_file_name = filename + ".wav"
         self.mp3_file_name = filename + ".mp3"
 
-    # 录音线程函数
-    def record_t(self):
+    # 主功能函数：开始录音 （开启自动停止）
+    def record(self):
         p = pyaudio.PyAudio()
         stream = p.open(format=self.FORMAT, channels=self.CHANNELS, 
         rate=self.RATE, input=True, frames_per_buffer=self.CHUNK)
@@ -87,10 +87,6 @@ class robot_recorder():
             if self.debugger:
                 print(e)
             return -1
-    
-    # 主功能函数：开始录音 （开启自动停止）
-    def record(self):
-        _thread.start_new_thread(self.record_t)
 
     # 主功能函数： 手动停止录音
     def stop(self):
