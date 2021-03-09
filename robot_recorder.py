@@ -4,9 +4,10 @@ from scipy import fftpack
 import wave
 import time
 import _thread
+from pydub import AudioSegment
 
 class robot_recorder():
-    def __init__(self, filename="question.mp3", debugger=False):
+    def __init__(self, filename="question", debugger=False):
         self.threshold = 6000
         self.filename = filename  #文件存放路径
         self.CHUNK = 1024  # 块大小
@@ -19,6 +20,10 @@ class robot_recorder():
         self.ratio = 2/3  # 检测低于阈值音值的比例
         self.debugger = debugger  # 是否输出测试内容
         self.startdetect_time = 3  # 录音开始后的延迟检测时间
+
+        # 文件转换
+        self.wav_file_name = filename + ".wav"
+        self.mp3_file_name = filename + ".mp3"
 
     # 录音线程函数
     def record_t(self):
@@ -69,11 +74,14 @@ class robot_recorder():
         stream.close()
         p.terminate()
         try:
-            wf = wave.open(self.filename, 'wb')
+            wf = wave.open(self.wav_file_name, 'wb')
             wf.setnchannels(self.CHANNELS)
             wf.setsampwidth(p.get_sample_size(self.FORMAT))
             wf.setframerate(self.RATE)
             wf.writeframes(b''.join(frames))
+            # 转为mp3格式
+            sound = AudioSegment.from_wav(self.wav_file_name)
+            sound.export(self.mp3_file_name, format='mp3')
             return 0
         except Exception as e:
             if self.debugger:
