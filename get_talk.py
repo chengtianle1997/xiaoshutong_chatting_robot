@@ -31,7 +31,7 @@ class GetTalk:
     
     # 主功能函数：开始聊天
     def Talk(self):
-        _thread.start_new_thread(self.Talk_t)
+        _thread.start_new_thread(self.Talk_t, ())
 
     def Talk_t(self):
         # 开始录音
