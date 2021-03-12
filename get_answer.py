@@ -3,6 +3,8 @@ import time
 import hashlib
 import base64
 import json
+import string
+import random
 
 # -------------- 错误信息 ------------------ #
 # code :999   网络超时
@@ -19,8 +21,9 @@ class TuringRobot:
         # self.SCENE = "main"
         self.SCENE = "main_box"
         self.RESULT_LEVEL = "complete"
-        # 设备唯一ID身份鉴别，需根据设备生成
-        self.AUTH_ID = "70e323b8cf9c1a5ce4970e6f14e45ce1"
+        # 设备唯一32位ID身份鉴别，需根据设备生成
+        # self.AUTH_ID = "70e323b8cf9c1a5ce4970e6f14e45ce1"
+        self.AUTH_ID = ''.join(random.sample(string.ascii_letters+string.digits, 32)).lower()
         # 地理位置信息，需根据ip或定位获取
         self.LAT = "39.938838"
         self.LNG = "116.368624"
